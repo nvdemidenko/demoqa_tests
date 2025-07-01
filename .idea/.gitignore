@@ -1,5 +1,16 @@
-# Default ignored files
-/shelf/
-/workspace.xml
-# Environment-dependent path to Maven home directory
-/mavenHomeManager.xml
+HELP.MD
+BUILD/
+!**/src/main/**
+!**/src/test/**
+
+#IDEA
+.idea
+*.iws
+*.iml
+*.ipr
+
+#Gradle
+.grade
+
+#Logs
+*.log
