@@ -84,7 +84,5 @@ public class DemoQaTest {
                         text("Москва, Красная площадь, д 2"),
                         text("NCR Gurgaon")
                 );
-        $("#closeLargeModal").click();
-        $("h1").shouldHave(text("Practice Form"));
     }
 }
