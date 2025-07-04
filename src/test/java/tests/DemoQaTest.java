@@ -13,11 +13,14 @@ public class DemoQaTest {
 
     @BeforeAll
     static void beforeAll() {
+        /*
+        не использую, т.к. с этим параметром не выполняется $("#submit").click();
         Configuration.browserSize = "1920x1080";
+        */
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.pageLoadStrategy = "eager";
-        //Configuration.holdBrowserOpen = true;
-        //Configuration.timeout = 5000;
+        Configuration.holdBrowserOpen = true;
+        Configuration.timeout = 5000;
     }
 
     @Test
@@ -25,62 +28,63 @@ public class DemoQaTest {
 
         open("/automation-practice-form");
 
-        //Заполняем ФИО и email
-        $("#firstName").setValue("Имя");
-        $("#lastName").setValue("Фамилия");
-        $("#userEmail").setValue("mailfortest@test.test");
+        //ФИО и email
+        $("#firstName").setValue("Иван");
+        $("#lastName").setValue("Иванов");
+        $("#userEmail").setValue("testmail@test.test");
 
-        //Заполняем пол
+        //Пол
         $("label[for='gender-radio-1']").click();
 
-        //Заполняем телефон
-        $("#userNumber").setValue("8999999999");
+        //Телефон
+        $("#userNumber").setValue("8987654321");
 
-        //Заполняем календарь
+        //Календарь
         $("#dateOfBirthInput").click();
-        $(".react-datepicker__year-select").selectOption("1995");
+        $(".react-datepicker__year-select").selectOption("1982");
         $(".react-datepicker__month-select").selectOption("March");
-        $(".react-datepicker__day--001").click();
+        $(".react-datepicker__day--009").click();
 
 
-        //Заполняем предметы
+        //Предметы
         $("#subjectsInput").setValue("Math").pressEnter();
         $("#subjectsInput").setValue("Physics").pressEnter();
         $("#subjectsInput").setValue("Computer Science").pressEnter();
 
-        //Заполняем хобби
+        //Хобби
         $("label[for='hobbies-checkbox-1']").click();
         $("label[for='hobbies-checkbox-3']").click();
 
-        //Заполняем фото
-        $("#uploadPicture").uploadFromClasspath("picture.png");
+        //Фото
+        $("#uploadPicture").uploadFromClasspath("futurama.jpg");
 
-        //Заполняем адрес
-        $("#currentAddress").setValue("Москва, Театральный проезд, 5с1");
+        //Адрес
+        $("#currentAddress").setValue("Москва, Красная площадь, д 2");
 
-        //Заполняем штат и город
+        //Штат и город
         $("#state").click();
         $("#react-select-3-input").setValue("NCR").pressEnter();
         $("#city").click();
         $("#react-select-4-input").setValue("Gurgaon").pressEnter();
 
-        //Нажимаем кнопку
+        //Нажимаем кнопку submit
         $("#submit").click();
 
-        //Проверки всего что наполняли
-
+        //Проверка анкеты
         $(".table-responsive").
                 shouldHave(
-                        text("Имя Фамилия"),
-                        text("mailfortest@test.test"),
+                        text("Иван Иванов"),
+                        text("testmail@test.test"),
                         text("Male"),
-                        text("8999999999"),
-                        text("01 March,1995"),
+                        text("8987654321"),
+                        text("09 March,1982"),
                         text("Maths, Physics, Computer Science"),
                         text("Sports, Music"),
                         text("futurama.jpg"),
-                        text("Москва, Театральный проезд, 5с1"),
+                        text("Москва, Красная площадь, д 2"),
                         text("NCR Gurgaon")
                 );
+        $("#closeLargeModal").click();
+        $("h1").shouldHave(text("Practice Form"));
     }
 }
