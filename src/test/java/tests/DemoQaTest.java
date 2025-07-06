@@ -6,8 +6,7 @@ import org.junit.jupiter.api.BeforeAll;
 
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 public class DemoQaTest {
 
@@ -19,14 +18,19 @@ public class DemoQaTest {
         */
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.pageLoadStrategy = "eager";
+        /*
+        true используется только для отладки тестов
         Configuration.holdBrowserOpen = true;
         Configuration.timeout = 5000;
+        */
     }
 
     @Test
     void practiceFormTest () {
 
         open("/automation-practice-form");
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
 
         //ФИО и email
         $("#firstName").setValue("Иван");
