@@ -10,7 +10,10 @@ BUILD/
 *.ipr
 
 #Gradle
-.grade
+.gradle
+gradle
+gradlew
+gradlew.bat
 
 #Logs
 *.log
