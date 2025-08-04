@@ -3,7 +3,6 @@ package pages;
 import com.codeborne.selenide.SelenideElement;
 import pages.components.RegistrationResult;
 import pages.components.CalendarComponent;
-//import pages.components.TableComponent;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
@@ -11,35 +10,56 @@ import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 
 public class PracticeFormTestPage {
-    private final SelenideElement firstNameInput = $("#firstName"),
-            lastNameInput = $("#lastName"),
-            userEmailInput = $("#userEmail"),
-            genderWrapper = $("#genterWrapper"),
-            userPhoneNumberInput = $("#userNumber"),
-            calendarInput = $("#dateOfBirthInput"),
-            subjectsInput = $("#subjectsInput"),
-            hobbiesWrapper = $("#hobbiesWrapper"),
-            uploadPictureInput = $("#uploadPicture"),
-            currentAddressInput = $ ("#currentAddress"),
-            stateInput = $("#state"),
-            cityInput = $("#city"),
-            stateCityWrapper = $("#stateCity-wrapper"),
-            submitButton = $("#submit");
+    private SelenideElement
+            firstNameInput,
+            lastNameInput,
+            userEmailInput,
+            genderWrapper,
+            userPhoneNumberInput,
+            calendarInput,
+            subjectsInput,
+            hobbiesWrapper,
+            uploadPictureInput,
+            currentAddressInput,
+            stateInput,
+            cityInput,
+            stateCityWrapper,
+            submitButton,
+            fixedBan,
+            footer;
 
     CalendarComponent calendarComponent = new CalendarComponent();
-    //TableComponent tableComponent = new TableComponent();
-    RegistrationResult registrationResult = new RegistrationResult();
-
     public pages.PracticeFormTestPage openPage() {
         open("https://demoqa.com/automation-practice-form");
         $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
-
+        initializeElements();
         return this;
     }
 
+    private void initializeElements() {
+        firstNameInput = $("#firstName");
+        lastNameInput = $("#lastName");
+        userEmailInput = $("#userEmail");
+        genderWrapper = $("#genterWrapper");
+        userPhoneNumberInput = $("#userNumber");
+        calendarInput = $("#dateOfBirthInput");
+        subjectsInput = $("#subjectsInput");
+        hobbiesWrapper = $("#hobbiesWrapper");
+        uploadPictureInput = $("#uploadPicture");
+        currentAddressInput = $("#currentAddress");
+        stateInput = $("#state");
+        cityInput = $("#city");
+        stateCityWrapper = $("#stateCity-wrapper");
+        submitButton = $("#submit");
+        fixedBan = $("#fixedban");
+        footer = $("footer");
+    }
+
+    RegistrationResult registrationResult = new RegistrationResult();
+
     public pages.PracticeFormTestPage removeBanner() {
-        executeJavaScript("$('#fixedban').remove()");
-        executeJavaScript("$('footer').remove()");
+        executeJavaScript("arguments[0].remove()", fixedBan);
+        executeJavaScript("arguments[0].remove()", footer);
         return this;
     }
 
@@ -121,11 +141,6 @@ public class PracticeFormTestPage {
         return this;
     }
 
-    public pages.PracticeFormTestPage checkResult(String key, String value) {
-        //tableComponent.checkTableComponent(key, value);
-
-        return this;
-    }
 
     public PracticeFormTestPage verifyResultsModalAppears() {
         registrationResult.verifyModalAppears();
