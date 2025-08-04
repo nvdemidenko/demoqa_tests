@@ -60,6 +60,7 @@ public class PracticeFormTestPage {
     public pages.PracticeFormTestPage removeBanner() {
         executeJavaScript("arguments[0].remove()", fixedBan);
         executeJavaScript("arguments[0].remove()", footer);
+
         return this;
     }
 

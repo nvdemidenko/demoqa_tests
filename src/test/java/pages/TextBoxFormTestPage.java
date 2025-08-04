@@ -9,26 +9,45 @@ import static com.codeborne.selenide.Selenide.executeJavaScript;
 
 public class TextBoxFormTestPage {
 
-    private final SelenideElement userName = $("#userName"),
-            userEmail = $("#userEmail"),
-            userCurrentAddress = $("#currentAddress"),
-            userPermanentAddress = $("#permanentAddress"),
-            submitButton = $("#submit"),
-            resultFullName = $("#output #name"),
-            resultEmail = $("#output #email"),
-            resultCurrentAddress = $("#output #currentAddress"),
-            resultPermanentAddress = $("#output #permanentAddress");
+    private SelenideElement
+            userName,
+            userEmail,
+            userCurrentAddress,
+            userPermanentAddress,
+            submitButton,
+            resultFullName,
+            resultEmail,
+            resultCurrentAddress,
+            resultPermanentAddress,
+            fixedBan,
+            footer;
+
 
 
     public TextBoxFormTestPage openPage() {
         open("/text-box");
+        initializeElements();
 
         return this;
     }
+    private void initializeElements(){
+        userName = $("#userName");
+        userEmail = $("#userEmail");
+        userCurrentAddress = $("#currentAddress");
+        userPermanentAddress = $("#permanentAddress");
+        submitButton = $("#submit");
+        resultFullName = $("#output #name");
+        resultEmail = $("#output #email");
+        resultCurrentAddress = $("#output #currentAddress");
+        resultPermanentAddress = $("#output #permanentAddress");
+        fixedBan = $("#fixedban");
+        footer = $("footer");
+    }
 
     public TextBoxFormTestPage removeBanner() {
-        executeJavaScript("$('#fixedban').remove()");
-        executeJavaScript("$('footer').remove()");
+        executeJavaScript("arguments[0].remove()", fixedBan);
+        executeJavaScript("arguments[0].remove()", footer);
+
         return this;
     }
 
