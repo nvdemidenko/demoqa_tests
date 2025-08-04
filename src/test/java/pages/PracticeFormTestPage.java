@@ -128,17 +128,20 @@ public class PracticeFormTestPage {
     public pages.PracticeFormTestPage setCity(String city) {
         cityInput.click();
         stateCityWrapper.$(byText(city)).click();
+
         return this;
     }
 
     public pages.PracticeFormTestPage setState(String state) {
         stateInput.click();
         stateCityWrapper.$(byText(state)).click();
+
         return this;
     }
 
     public pages.PracticeFormTestPage submitForm() {
         submitButton.click();
+
         return this;
     }
 
