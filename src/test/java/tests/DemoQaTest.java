@@ -41,7 +41,7 @@ public class DemoQaTest {
         $("label[for='gender-radio-1']").click();
 
         //Телефон
-        $("#userNumber").setValue("8987654321");
+        $("#phoneNumber").setValue("8987654321");
 
         //Календарь
         $("#dateOfBirthInput").click();

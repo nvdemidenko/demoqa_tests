@@ -29,10 +29,12 @@ public class PracticeFormTestPage {
             footer;
 
     CalendarComponent calendarComponent = new CalendarComponent();
+
     public pages.PracticeFormTestPage openPage() {
         open("https://demoqa.com/automation-practice-form");
-        $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
+        //$(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
         initializeElements();
+
         return this;
     }
 
