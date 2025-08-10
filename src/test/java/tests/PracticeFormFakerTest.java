@@ -31,7 +31,7 @@ public class PracticeFormFakerTest {
                 .verifyResult("Student Email", userEmail)
                 .verifyResult("Gender", gender)
                 .verifyResult("Mobile", phoneNumber)
-                .verifyResult("Date of Birth", day +" "+ month + "," + year)
+                .verifyResult("Date of Birth", day + " " + month + "," + year)
                 .verifyResult("Subjects", subject)
                 .verifyResult("Hobbies", hobby)
                 .verifyResult("Picture", pictureName)
