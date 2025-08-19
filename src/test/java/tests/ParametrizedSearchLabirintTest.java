@@ -15,6 +15,10 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
 @DisplayName("Тесты на поиск в интернет магазине Лабиринт")
+@Tags({
+        @Tag("WEB"),
+        @Tag("SMOKE")
+})
 public class ParametrizedSearchLabirintTest {
 
     @BeforeEach
@@ -29,10 +33,7 @@ public class ParametrizedSearchLabirintTest {
             "Маленький принц", "Дюна"})
     @DisplayName("Тесты на поиск в интернет магазине Лабиринт (простой поиск)")
     @ParameterizedTest
-    @Tags({
-            @Tag("WEB"),
-            @Tag("SMOKE")
-    })
+
     void successfulSearchTest(String searchQuery) {
         SelenideElement topTitleElement = $(".index-top-title");
 
@@ -45,10 +46,7 @@ public class ParametrizedSearchLabirintTest {
     @CsvFileSource(resources = "/ParamitrizedSearchLabirintTest.csv")
     @DisplayName("Тесты на поиск в интернет магазине Лабиринт из файла ParamitrizedSearchLabirintTest.csv")
     @ParameterizedTest(name = "Для поискового запроса {0} в карточке товара должен быть результат со словом {1}")
-    @Tags({
-            @Tag("WEB"),
-            @Tag("SMOKE")
-    })
+
     void searchResultQueryCheckCsvFileTest(String searchQuery, String name) {
         SelenideElement topTitleElement = $(".index-top-title");
 
@@ -64,10 +62,7 @@ public class ParametrizedSearchLabirintTest {
 
     @DisplayName("Тесты на поиск в интернет магазине Лабиринт из @CsvSource")
     @ParameterizedTest(name = "Для поискового запроса {0} в карточке товара должен быть результат со словом {1}")
-    @Tags({
-            @Tag("WEB"),
-            @Tag("SMOKE")
-    })
+
 
     void searchResultQueryCheckCsvTest(String searchQuery, String name) {
         SelenideElement topTitleElement = $(".index-top-title");

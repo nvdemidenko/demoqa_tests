@@ -12,7 +12,7 @@ public class FakerDataForTest {
     public static String currentAddress = faker.address().fullAddress();
     public static String gender = faker.options().option("Male", "Female", "Other");
 
-    public static String day = String.format("%02d", faker.number().numberBetween(1, 30));
+    public static String day = String.format("%02d", faker.number().numberBetween(1, 28));
     public static String month = faker.options().option(
             "January", "February", "March", "April", "May", "June",
             "July", "August", "September", "October", "November", "December"
