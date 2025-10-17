@@ -1,5 +1,6 @@
 package tests;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
@@ -8,6 +9,7 @@ import org.junit.jupiter.api.BeforeAll;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 
+@Tag("web")
 public class DemoQaTest {
 
     @BeforeAll
@@ -26,6 +28,7 @@ public class DemoQaTest {
     }
 
     @Test
+
     void practiceFormTest () {
 
         open("/automation-practice-form");
@@ -41,7 +44,7 @@ public class DemoQaTest {
         $("label[for='gender-radio-1']").click();
 
         //Телефон
-        $("#phoneNumber").setValue("8987654321");
+        $("#userNumber").setValue("8987654321");
 
         //Календарь
         $("#dateOfBirthInput").click();
