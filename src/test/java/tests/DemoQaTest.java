@@ -1,10 +1,18 @@
 package tests;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.selenide.AllureSelenide;
+import attach.Attach;
 
+import java.util.Map;
+
+import static com.codeborne.selenide.Selenide.closeWebDriver;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
@@ -14,17 +22,21 @@ public class DemoQaTest {
 
     @BeforeAll
     static void beforeAll() {
-        /*
-        не использую, т.к. с этим параметром не выполняется $("#submit").click();
-        Configuration.browserSize = "1920x1080";
-        */
         Configuration.baseUrl = "https://demoqa.com";
-        Configuration.pageLoadStrategy = "eager";
-        /*
-        true используется только для отладки тестов
-        Configuration.holdBrowserOpen = true;
-        Configuration.timeout = 5000;
-        */
+        Configuration.browserSize = "1920x1080";
+        //Configuration.browser = "chrome";
+        Configuration.timeout = 10000;
+        //Configuration.holdBrowserOpen = true;
+        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("selenoid:options", Map.<String, Object>of(
+                "enableVNC", true,
+                "enableVideo", true
+        ));
+        Configuration.browserCapabilities = capabilities;
+
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
     }
 
     @Test
@@ -91,5 +103,13 @@ public class DemoQaTest {
                         text("Москва, Красная площадь, д 2"),
                         text("NCR Gurgaon")
                 );
+    }
+    @AfterEach
+    void addAttachments() {
+        Attach.screenshotAs("Last screenshot");
+        Attach.pageSource();
+        Attach.browserConsoleLogs();
+        Attach.addVideo();
+        closeWebDriver();
     }
 }
